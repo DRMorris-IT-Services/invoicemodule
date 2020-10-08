@@ -2,6 +2,9 @@
 
 namespace duncanrmorris\invoicemodule\Http\Controllers;
 
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\View;
+
 use duncanrmorris\invoicemodule\App\invoices_lines;
 use duncanrmorris\invoicemodule\App\invoices;
 use Illuminate\Http\Request;
