@@ -29,7 +29,7 @@ class InvoicesController extends Controller
 
         $unique = $client->unique('company');
 
-       return view('invoices.invoices',['invoices' => $invoices->orderby('invoice_date','DESC')->paginate(15), 'client' => $unique]);
+       return view('invoicemodule::invoices',['invoices' => $invoices->orderby('invoice_date','DESC')->paginate(15), 'client' => $unique]);
         
 
     }
@@ -85,7 +85,7 @@ class InvoicesController extends Controller
         $client = clients::join('invoices','clients.client_id', '=', 'invoices.client_id')
         ->where('invoice_id',$id)->get();
 
-        return view('invoices.view', ['invoice' => $invoices->where('invoice_id',$id)->get(), 'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(), 'client' => $client, 'id' => $id]);
+        return view('invoicemodule::view', ['invoice' => $invoices->where('invoice_id',$id)->get(), 'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(), 'client' => $client, 'id' => $id]);
     }
 
     /**
@@ -106,7 +106,7 @@ class InvoicesController extends Controller
         $grand_total = invoices_lines::where('invoice_id', $id)->sum('line_total');
 
         
-        return view('invoices.edit', ['invoice' => $invoices->where('invoice_id',$id)->get(), 'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(),
+        return view('invoicemodule::edit', ['invoice' => $invoices->where('invoice_id',$id)->get(), 'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(),
         'total_net' => $total_net, 'total_tax' => $total_tax, 'grand_total' => $grand_total, 'clients' => $clients->orderby('company','asc')->get(), 'client' => $client]);
         
 
@@ -165,7 +165,7 @@ class InvoicesController extends Controller
         $name = $show[0]['company'];
         $inv_date = $show[0]['invoice_date'];
 
-       $pdf = PDF::loadView('invoices.pdf', ['invoice' => $show, 'lines' => $lines]);
+       $pdf = PDF::loadView('invoicemodule::pdf', ['invoice' => $show, 'lines' => $lines]);
         
        return $pdf->download("invoice $name $inv_date.pdf");
       
