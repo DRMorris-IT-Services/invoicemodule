@@ -30,39 +30,37 @@
                     <form  action="{{ route('invoices.update',['id' => $inv->invoice_id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')  
-                        <div class="row">
-
-        
-                            <div class="col-md-4">
-                                    
-                                            <h5>Client</h5>
-                                            
+                        <div class="row">        
+                                <div class="col-md-4">
                                         
-                                            
-                                           <select class="form-control" name="client" onchange="submit()">
-                                           @foreach ($client as $c)<option value="{{$c->client_id}}">{{ $c->company }}</option>@endforeach
-                                           <option></option>
-                                           @foreach ($clients as $cl)
-                                            <option value="{{$cl->client_id}}">{{$cl->company}}</option>
-                                           @endforeach
-                                            </select>
+                                                <h5>Client</h5>
                                                 
-                    
-                                            <br><br>
-                                            <h6>Invoice Reference: <input type="text" class="form-control" name="ref_no" value="{{$inv->invoice_ref}}" onchange="submit()"></h6>
-                                       
+                                            
+                                                
+                                            <select class="form-control" name="client" onchange="submit()">
+                                            @foreach ($client as $c)<option value="{{$c->client_id}}">{{ $c->company }}</option>@endforeach
+                                            <option></option>
+                                            @foreach ($clients as $cl)
+                                                <option value="{{$cl->client_id}}">{{$cl->company}}</option>
+                                            @endforeach
+                                                </select>
+                                                    
+                        
+                                                <br><br>
+                                                <h6>Invoice Reference: <input type="text" class="form-control" name="ref_no" value="{{$inv->invoice_ref}}" onchange="submit()"></h6>
+                                        
                                 </div>
                     
-                            <div class="col-md-4 ">
-                                    
-                                            <h5>Dates</h5>
+                                <div class="col-md-4 ">
                                         
-                                            <h6>Invoice Date: <input type="text" class="form-control" name="invoice_date" value="{{$inv->invoice_date}}" onchange="submit()"></h6>
-                                            <h6>Invoice Due: <input type="text" class="form-control" name="due_date" value="{{$inv->invoice_due}}" onchange="submit()"></h6>
-                                            <h6>Created On: {{ $inv->created_at }}</h6>
-                                            <h6>Updated On: {{ $inv->updated_at }}</h6>
+                                                <h5>Dates</h5>
                                             
-                                        
+                                                <h6>Invoice Date: <input type="text" class="form-control" name="invoice_date" value="{{$inv->invoice_date}}" onchange="submit()"></h6>
+                                                <h6>Invoice Due: <input type="text" class="form-control" name="due_date" value="{{$inv->invoice_due}}" onchange="submit()"></h6>
+                                                <h6>Created On: {{ $inv->created_at }}</h6>
+                                                <h6>Updated On: {{ $inv->updated_at }}</h6>
+                                                
+                                            
                                 </div>
                     
                                 
@@ -132,8 +130,8 @@
                                             
                                             
                                        
-                                </div>
                             </div>
+                        </div>
                         
                     
                             <br><br>
@@ -148,7 +146,6 @@
                                             
                                        
                                 </div>
-                    
                                 </div>
 
                 </div>
