@@ -108,6 +108,7 @@
                                             <th>Tax </th>
                                             <th>Tax Exempt</th>
                                             <th>Gross Total</th>
+                                            <th></th>
                                             </tr>
                                                 </thead>
                                                 <tbody>
