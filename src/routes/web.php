@@ -16,6 +16,7 @@ Route::group(['namespace' => 'duncanrmorris\invoicemodule\Http\Controllers'], fu
 	### INVOICE LINES ###
 	Route::put('invoices/ln-update/{id}/{iid}', 'InvoicesLinesController@update')->name('invoices.ln.update');
 	Route::get('invoices/ln-net/{id}', 'InvoicesLinesController@create')->name('invoices.ln.new');
+	Route::get('invoices/ln-del/{id}', 'InvoicesLinesController@destroy')->name('invoices.ln.del');
 
     });
 });

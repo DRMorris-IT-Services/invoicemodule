@@ -125,8 +125,13 @@ class InvoicesLinesController extends Controller
      * @param  \App\invoices_lines  $invoices_lines
      * @return \Illuminate\Http\Response
      */
-    public function destroy(invoices_lines $invoices_lines)
+    public function destroy(invoices_lines $invoices_lines, $id)
     {
         //
+        
+        invoices_lines::where('id',$id)
+        ->delete();
+
+        return back()->withstatus(__('Invoice Line successfully removed.'));
     }
 }
