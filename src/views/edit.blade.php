@@ -117,7 +117,7 @@
                                                         @method('PUT')
                                                         
                                                     <tr>
-                                                    <td width="100px"><input type="text" id="qty" class="form-control col-12" name="qty" value="{{$ln->qty}}" onratechange="submit()"></td>
+                                                    <td width="100px"><input type="text" id="qty" class="form-control col-12" name="qty" value="{{$ln->qty}}" onchange="submit()"></td>
                                                     <td><input type="text" class="form-control col-12 " name="description" value="{{$ln->description}}" onchange="submit()"></td>
                                                     <td width="150px"><input type="text" id="price" class="form-control col-12" name="price" value="{{$ln->line_price}}" onchange="submit()" ></td>
                                                     <td width="150px"><input type="text" id="net" class="form-control col-12" name="net" value="{{$ln->line_net}}" onchange="submit()"></td>
