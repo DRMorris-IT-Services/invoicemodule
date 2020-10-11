@@ -84,10 +84,9 @@
                                             
                                        
                                 </div>
-                    
-                    
                             </div>
-                    </form>
+                        </form>
+                
 
                             
                         <div class="row">
@@ -110,26 +109,23 @@
                                                 </thead>
                                                 <tbody>
                                                 @foreach ($invoice_lines as $ln)
-                                                <form action="{{ route('invoices.ln.update',['id' => $ln->id, 'iid' => $inv->invoice_id]) }}" method="POST" enctype="multipart/form-data">
+                                                <form action="{{route('invoices.ln.update',['id' => $ln->id, 'iid' => $inv->invoice_id]) }}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PUT')  
-                                                <tr>
-                                                <td width="100px"><input type="text" id="qty" class="form-control col-12" name="qty" value="{{$ln->qty}}" onchange="submit()"></td>
-                                                <td><input type="text" class="form-control col-12" name="description" value="{{$ln->description}}" onchange="submit()"></td>
-                                                <td width="150px"><input type="text" id="price" class="form-control col-12" name="price" value="{{$ln->line_price}}" onchange="submit()" ></td>
-                                                <td width="150px"><input type="text" id="net" class="form-control col-12" name="net" value="{{$ln->line_net}}" onchange="submit()"></td>
-                                                <td width="150px"><input type="text" id="tax" class="form-control col-12" name="tax" value="{{$ln->line_tax}}" onchange="submit()"></td>
-                                                <td width="80px">@if($ln->line_tax_exempt == "on")<input type="checkbox" class="form-control " name="no-tax" onchange="submit()" checked>@else <input type="checkbox" class="form-control" name="no-tax" onchange="submit()">@endif</td>
-                                                <td width="150px"><input type="text" id="totalPrice" class="form-control col-12 " name="total" value="{{$ln->line_total}}" onchange="submit()"></td>
-                                                
-                                                </tr>
+                                                        <tr>
+                                                        <td width="100px"><input type="text" id="qty" class="form-control col-12" name="qty" value="{{$ln->qty}}" onchange="submit()"></td>
+                                                        <td><input type="text" class="form-control col-12" name="description" value="{{$ln->description}}" onchange="submit()"></td>
+                                                        <td width="150px"><input type="text" id="price" class="form-control col-12" name="price" value="{{$ln->line_price}}" onchange="submit()" ></td>
+                                                        <td width="150px"><input type="text" id="net" class="form-control col-12" name="net" value="{{$ln->line_net}}" onchange="submit()"></td>
+                                                        <td width="150px"><input type="text" id="tax" class="form-control col-12" name="tax" value="{{$ln->line_tax}}" onchange="submit()"></td>
+                                                        <td width="80px">@if($ln->line_tax_exempt == "on")<input type="checkbox" class="form-control " name="no-tax" onchange="submit()" checked>@else <input type="checkbox" class="form-control" name="no-tax" onchange="submit()">@endif</td>
+                                                        <td width="150px"><input type="text" id="totalPrice" class="form-control col-12 " name="total" value="{{$ln->line_total}}" onchange="submit()"></td>
+                                                        
+                                                        </tr>
                                                 </form>
                                                 @endforeach
                                                 </tbody>
                                             </table>
-                                            
-                                            
-                                       
                             </div>
                         </div>
                         
