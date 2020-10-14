@@ -17,3 +17,39 @@ To install this package, please follow these instructions
 
 ### Step 1
 
+Setup you Laravel application as required, then run
+````
+composer require duncanrmorris/invoices
+````
+
+### Step 2
+
+Once the composer has completed the installation.  You need to register the new Service Provider in the "./config/app.php" file as:
+
+````
+'providers' => [
+
+        /*
+         * Laravel Framework Service Providers...
+         */
+        Illuminate\Auth\AuthServiceProvider::class,
+        Illuminate\Broadcasting\BroadcastServiceProvider::class,
+        Illuminate\Bus\BusServiceProvider::class,
+        ///
+        duncanrmorris\invoicemodule\InvoicesServiceProvider::class,
+````
+
+### Step 3
+
+Then run the database setup
+
+```
+php artisan migrate
+```
+
+### Step 4
+You will now be able to navigate to the new module via:
+```
+<a href="/invoices">Invoices</a>
+```
+
