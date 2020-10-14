@@ -22,16 +22,9 @@
   </head>
   <body>
    
-  <img src="../public/IT-logo.png" width="150px" style="float:left" >
+  
             <br><br><br><br><br><br><br>
-            <div align="right">
-            DRMorris IT Services <br>
-            Hauptstraße 14 <br>
-            88167 Maierhöfen <br>
-            Deutschland <br>
-            <br>
-            Tax ID: DE321597040</td>
-    </div>
+  
 
     <h1 class="header">Invoice</h1>
 
@@ -105,17 +98,13 @@ Invoice Due: {{date('d/m/y', strtotime($i->invoice_due))}} <br>
 <table width="100%">
 <tr>
 <td width="30%" align="center">
-<p class="footer">accounts@drmorris-itservices.de <br>
-Tel: +49 (0)1520 2709055</p>
+
 </td>
 <td align="center">
-<p class="footer">www.drmorris-itservices.de</p>
+
 </td>
 <td align="right">
-<p class="footer">Duncan R Morris <br>
-Hauptstraße 14 <br>
-88167 Maierhöfen <br>
-Deutschland</p>
+
 </td>
 </tr>
 </table>
