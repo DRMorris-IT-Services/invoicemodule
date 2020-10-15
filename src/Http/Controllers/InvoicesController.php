@@ -29,7 +29,10 @@ class InvoicesController extends Controller
 
         $unique = $client->unique('company');
 
-       return view('invoicemodule::invoices',['invoices' => $invoices->orderby('invoice_date','DESC')->paginate(15), 'client' => $unique]);
+       return view('invoicemodule::invoices',[
+           'invoices' => $invoices->orderby('invoice_date','DESC')->paginate(15), 
+           'client' => $unique
+           ]);
         
 
     }
@@ -174,5 +177,21 @@ class InvoicesController extends Controller
 
       //return view('invoices.pdf',['invoice' => $show, 'lines' => $lines]);
 
-}
+    }
+
+    public function search(invoices $invoices, $search)
+    {
+        $client = clients::join('invoices','clients.client_id', '=', 'invoices.client_id')
+        ->select('clients.company','invoice_id','invoices.client_id')->get();
+
+        $unique = $client->unique('company');
+
+       
+        
+        
+        return view('invoicemodule::search',[
+            'invoices' => $invoices->where('client_id', $search)->orderby('invoice_date','DESC')->paginate(15), 
+            'client' => $unique
+        ]);
+    }
 }

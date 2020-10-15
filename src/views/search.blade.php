@@ -13,7 +13,7 @@
     <!-- TOP LEVEL NAV --> 
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
 	    <li class="nav-item">
-		<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+        <a class="nav-link active" id="home-tab"  href="{{route('invoices')}}" role="tab" aria-controls="home" aria-selected="true">List</a>
 	    </li>
 	    
 	    <li class="nav-item">
@@ -26,7 +26,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h3>{{ __('Invoices') }}</h3></div>
+                <div class="card-header"><h3>{{ __('Invoices Search Result') }}</h3></div>
 
                 <div class="card-body">
                     <div class="table-responsive">  

@@ -13,6 +13,8 @@ Route::group(['namespace' => 'duncanrmorris\invoicemodule\Http\Controllers'], fu
 	Route::get('invoices/view/{id}', 'InvoicesController@show')->name('invoices.view');
 	Route::put('invoices/crm-del/{id}', 'InvoicesController@destroy')->name('invoices.del');
 	Route::get('invoices/download/{id}','InvoicesController@downloadPDF')->name('invoices.download');
+	Route::get('invoices/search/{search}','InvoicesController@search')->name('invoices.search');
+
 	### INVOICE LINES ###
 	Route::put('invoices/ln-update/{id}/{iid}', 'InvoicesLinesController@update')->name('invoices.ln.update');
 	Route::get('invoices/ln-net/{id}', 'InvoicesLinesController@create')->name('invoices.ln.new');
