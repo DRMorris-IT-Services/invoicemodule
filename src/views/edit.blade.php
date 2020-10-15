@@ -36,8 +36,6 @@
                                         
                                                 <h5>Client</h5>
                                                 
-                                            
-                                                
                                             <select class="form-control" name="client" onchange="submit()">
                                             @foreach ($client as $c)<option value="{{$c->client_id}}">{{ $c->company }}</option>@endforeach
                                             <option></option>
