@@ -132,6 +132,6 @@ class InvoicesLinesController extends Controller
         invoices_lines::where('id',$id)
         ->delete();
 
-        return back()->withstatus(__('Invoice Line successfully removed.'));
+        return back()->withdelete(__('Invoice Line successfully removed.'));
     }
 }
