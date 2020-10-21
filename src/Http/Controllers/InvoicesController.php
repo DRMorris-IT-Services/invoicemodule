@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\View;
 
 use duncanrmorris\invoicemodule\App\invoices;
 use duncanrmorris\invoicemodule\App\invoices_lines;
+use duncanrmorris\invoicemodule\App\invoicecontrols;
 use duncanrmorris\invoicemodule\App\clients;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use PDF;
 
@@ -20,7 +22,7 @@ class InvoicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(invoices $invoices)
+    public function index(invoices $invoices, invoicecontrols $invoicecontrols)
     {
         //
 
@@ -31,7 +33,9 @@ class InvoicesController extends Controller
 
        return view('invoicemodule::invoices',[
            'invoices' => $invoices->orderby('invoice_date','DESC')->paginate(15), 
-           'client' => $unique
+           'client' => $unique,
+           'controls' => $invoicecontrols->where('user_id',Auth::user()->id)->get(),
+            'count' => $invoicecontrols->count(),
            ]);
         
 
@@ -81,14 +85,20 @@ class InvoicesController extends Controller
      * @param  \App\invoices  $invoices
      * @return \Illuminate\Http\Response
      */
-    public function show(invoices $invoices, invoices_lines $invoices_lines, clients $clients, $id)
+    public function show(invoices $invoices, invoices_lines $invoices_lines, clients $clients, $id, invoicecontrols $invoicecontrols)
     {
         //
 
         $client = clients::join('invoices','clients.client_id', '=', 'invoices.client_id')
         ->where('invoice_id',$id)->get();
 
-        return view('invoicemodule::view', ['invoice' => $invoices->where('invoice_id',$id)->get(), 'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(), 'client' => $client, 'id' => $id]);
+        return view('invoicemodule::view', [
+            'invoice' => $invoices->where('invoice_id',$id)->get(), 
+            'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(), 
+            'client' => $client, 'id' => $id,
+            'controls' => $invoicecontrols->where('user_id',Auth::user()->id)->get(),
+            'count' => $invoicecontrols->count(),
+            ]);
     }
 
     /**

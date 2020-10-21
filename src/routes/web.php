@@ -20,5 +20,12 @@ Route::group(['namespace' => 'duncanrmorris\invoicemodule\Http\Controllers'], fu
 	Route::get('invoices/ln-net/{id}', 'InvoicesLinesController@create')->name('invoices.ln.new');
 	Route::get('invoices/ln-del/{id}', 'InvoicesLinesController@destroy')->name('invoices.ln.del');
 
+	### CONTROLS ###
+    Route::get('invoices/controls/{id}', 'InvoicescontrolsController@index')->name('invoices.controls');
+    Route::get('invoices/controls/view/{id}', 'InvoicescontrolsController@show')->name('invoices.controls.view');
+    Route::get('invoices/controls/setup/{id}', 'InvoicescontrolsController@create')->name('invoices.controls.setup');
+    Route::get('invoices/controls/edit/{id}', 'InvoicescontrolsController@edit')->name('invoices.controls.edit');
+    Route::put('invoices/controls/update/{id}', 'InvoicescontrolsController@update')->name('invoices.controls.update');
+
     });
 });
