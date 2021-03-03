@@ -11,33 +11,18 @@
     @endif
 
 
-@if($count == 0)
-<div class="row justify-content-end">
-<a href="{{route('invoices.controls',['id' => AUTH::user()->id])}}"><i class="fa fa-cog text-info"></i></a>
-</div>
 
-<h2>Setup Required</h2>
-  <p>Please use the 'Clog' icon to setup the users.</p>
-@endif
-@if($count >= 1)
-@foreach($controls as $c)
-
-@if($c->invoice_admin == "on")
-<div class="row justify-content-end">
-  <a href="{{route('invoices.controls',['id' => AUTH::user()->id])}}"><i class="fa fa-cog text-info"></i></a>
-  </div>
-@endif
 
     <!-- TOP LEVEL NAV --> 
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
 	    <li class="nav-item">
 		<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
 	    </li>
-        @if($c->invoice_add == "on")
+        
 	    <li class="nav-item">
 		<a class="nav-link" id="profile-tab" href="{{route('invoices.new')}}" role="tab" aria-selected="false">New Invoice</a>
 	    </li>
-        @endif
+        
 	    
 	</ul>
     <!-- END OF NAV -->
@@ -48,7 +33,7 @@
                 <div class="card-header"><h3>{{ __('Invoices') }}</h3></div>
 
                 <div class="card-body">
-                @if($c->invoice_view == "on")
+               
                     <div class="table-responsive">  
                         <table id="invoices" class="table">
                             <thead class=" text-primary">
@@ -68,7 +53,7 @@
                             <tbody>
                             @foreach ($invoices as $i)
                                 <tr>
-                                    <td>@foreach($client as $cl) @if($i->client_id == $cl->client_id) {{$cl->company}} @endif @endforeach</td>
+                                    <td></td>
                                     <td>{{$i->invoice_ref}}</td>
                                     <td>{{date('d/m/y', strtotime($i->invoice_date))}}</td>
                                     <td>{{date('d/m/y', strtotime($i->invoice_due))}}</td>
@@ -78,17 +63,13 @@
                                     <td>{{number_format($i->amount_paid,2,',','.')}}</td>
                                     <td>{{$i->status}}</td>
                                     <td>
-                                    @if($c->invoice_download == "on")
+                                    
                                     <a href="{{route('invoices.download',['id' => $i->invoice_id])}}"> <button class="btn btn-sm btn-outline-primary fas fa-download"></button></a>
-                                    @endif
-                                    @if($c->invoice_view == "on")
+                                    
                                     <a href="{{route('invoices.view',['id' => $i->invoice_id])}}"><button class="btn btn-sm btn-outline-success fa fa-eye"></button></a>
-                                    @endif
-                                    @if($c->invoice_edit == "on")
+                                    
                                     <a href="{{route('invoices.edit',['id' => $i->invoice_id])}}"><button class="btn btn-sm btn-outline-warning fa fa-edit"></button></a>
-                                    @endif
-                                
-                                    @if($c->invoice_del == "on")
+                                    
                                     <button class="btn btn-sm btn-outline-danger fa fa-trash" data-toggle="modal" data-target="#invoice_del{{$i->id}}"></button>
                                     
                                     <!-- MODAL DELETE INVOICE -->
@@ -119,7 +100,7 @@
                                             </form>
 
                                             <!-- END MODAL FOR DELETE CLIENT --> 
-                                        @endif
+                                        
                                     </td>
                                 </tr>
                             @endforeach
@@ -128,9 +109,7 @@
                         </table>
                         {{ $invoices->links() }}
                     </div>
-                    @else
-                    <p>Sorry, you don't have the access level required to view.</p>
-                    @endif
+                    
                     
                 </div>
             </div>
@@ -140,8 +119,8 @@
 
 
 
-@endforeach
-@endif
+
+
 @endsection
 
 @push('scripts')

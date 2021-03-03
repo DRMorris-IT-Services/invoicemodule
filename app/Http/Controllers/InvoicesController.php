@@ -1,15 +1,15 @@
 <?php
 
-//namespace App\Http\Controllers;
-namespace duncanrmorris\invoicemodule\Http\Controllers;
+namespace App\Http\Controllers;
+
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
-use duncanrmorris\invoicemodule\App\invoices;
-use duncanrmorris\invoicemodule\App\invoices_lines;
-use duncanrmorris\invoicemodule\App\invoicecontrols;
-use duncanrmorris\invoicemodule\App\clients;
+use App\invoices;
+use App\invoices_lines;
+use App\invoicecontrols;
+use App\clients;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -26,14 +26,14 @@ class InvoicesController extends Controller
     {
         //
 
-        $client = clients::join('invoices','clients.client_id', '=', 'invoices.client_id')
-        ->select('clients.company','invoice_id','invoices.client_id')->get();
+        /* $client = clients::join('invoices','clients.client_id', '=', 'invoices.client_id')
+        ->select('clients.company','invoice_id','invoices.client_id')->get(); */
 
-        $unique = $client->unique('company');
+        //$unique = $client->unique('company');
 
-       return view('invoicemodule::invoices',[
+       return view('invoices',[
            'invoices' => $invoices->orderby('invoice_date','DESC')->paginate(15), 
-           'client' => $unique,
+           
            'controls' => $invoicecontrols->where('user_id',Auth::user()->id)->get(),
             'count' => $invoicecontrols->count(),
            ]);
@@ -92,7 +92,7 @@ class InvoicesController extends Controller
         $client = clients::join('invoices','clients.client_id', '=', 'invoices.client_id')
         ->where('invoice_id',$id)->get();
 
-        return view('invoicemodule::view', [
+        return view('view', [
             'invoice' => $invoices->where('invoice_id',$id)->get(), 
             'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(), 
             'client' => $client, 'id' => $id,
@@ -119,7 +119,7 @@ class InvoicesController extends Controller
         $grand_total = invoices_lines::where('invoice_id', $id)->sum('line_total');
 
         
-        return view('invoicemodule::edit', ['invoice' => $invoices->where('invoice_id',$id)->get(), 'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(),
+        return view('edit', ['invoice' => $invoices->where('invoice_id',$id)->get(), 'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(),
         'total_net' => $total_net, 'total_tax' => $total_tax, 'grand_total' => $grand_total, 'clients' => $clients->orderby('company','asc')->get(), 'client' => $client]);
         
 
@@ -178,7 +178,7 @@ class InvoicesController extends Controller
         $name = $show[0]['company'];
         $inv_date = $show[0]['invoice_date'];
 
-       $pdf = PDF::loadView('invoicemodule::pdf', ['invoice' => $show, 'lines' => $lines]);
+       $pdf = PDF::loadView('pdf', ['invoice' => $show, 'lines' => $lines]);
         
        return $pdf->download("invoice $name $inv_date.pdf");
       
@@ -199,7 +199,7 @@ class InvoicesController extends Controller
        
         
         
-        return view('invoicemodule::search',[
+        return view('search',[
             'invoices' => $invoices->where('client_id', $search)->orderby('invoice_date','DESC')->paginate(15), 
             'client' => $unique
         ]);

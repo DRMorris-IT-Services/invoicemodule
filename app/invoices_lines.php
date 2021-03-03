@@ -1,7 +1,7 @@
 <?php
 
-//namespace App;
-namespace duncanrmorris\invoicemodule\app;
+namespace App;
+
 
 use Illuminate\Routing\Controller;
 use Illuminate\Database\Eloquent\Model;

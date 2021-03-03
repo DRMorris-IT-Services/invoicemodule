@@ -35,8 +35,8 @@
             </li>
 
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{url('/clients')}}">
-                <i class="c-sidebar-nav-icon fa fa-list fa-lg"></i>Client List
+                <a class="c-sidebar-nav-link" href="{{url('/invoices')}}">
+                <i class="c-sidebar-nav-icon fa fa-list fa-lg"></i>Invoices List
                 </a>
             </li>
 

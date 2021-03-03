@@ -1,11 +1,13 @@
 <?php
 
-namespace duncanrmorris\invoicemodule\App;
+namespace App;
 
+
+use Illuminate\Routing\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class invoicecontrols extends Model
+class clients extends Model
 {
     //
     use Notifiable;
@@ -16,6 +18,6 @@ class invoicecontrols extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'invoice_admin', 'invoice_view', 'invoice_add', 'invoice_edit', 'invoice_download', 'invoice_del',
+        'client_id', 'user_id',
     ];
 }
