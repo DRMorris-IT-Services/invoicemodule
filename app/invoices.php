@@ -18,6 +18,6 @@ class invoices extends Model
      * @var array
      */
     protected $fillable = [
-        'invoice_id', 'client_id', 'invoice_date', 'invoice_due', 'status', 'net_total', 'tax_total', 'grand_total', 'amount_paid', 'invoice_ref',
+        'user_id','invoice_id', 'client_id', 'invoice_date', 'invoice_due', 'status', 'net_total', 'tax_total', 'grand_total', 'amount_paid', 'invoice_ref',
     ];
 }

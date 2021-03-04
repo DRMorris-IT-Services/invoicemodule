@@ -53,7 +53,7 @@
                             <tbody>
                             @foreach ($invoices as $i)
                                 <tr>
-                                    <td></td>
+                                <td>@foreach($client as $cl) @if($i->client_id == $cl->client_id) {{$cl->company}} @endif @endforeach</td>
                                     <td>{{$i->invoice_ref}}</td>
                                     <td>{{date('d/m/y', strtotime($i->invoice_date))}}</td>
                                     <td>{{date('d/m/y', strtotime($i->invoice_due))}}</td>
@@ -64,12 +64,16 @@
                                     <td>{{$i->status}}</td>
                                     <td>
                                     
-                                    <a href="{{route('invoices.download',['id' => $i->invoice_id])}}"> <button class="btn btn-sm btn-outline-primary fas fa-download"></button></a>
+                                    <a href="{{route('invoices.download',['id' => $i->invoice_id])}}"> <button class="btn btn-sm btn-outline-primary fa fa-download"></button></a>
                                     
                                     <a href="{{route('invoices.view',['id' => $i->invoice_id])}}"><button class="btn btn-sm btn-outline-success fa fa-eye"></button></a>
-                                    
+                                    @can('isAdmin')
                                     <a href="{{route('invoices.edit',['id' => $i->invoice_id])}}"><button class="btn btn-sm btn-outline-warning fa fa-edit"></button></a>
-                                    
+                                    @elsecan('isManager')
+                                    <a href="{{route('invoices.edit',['id' => $i->invoice_id])}}"><button class="btn btn-sm btn-outline-warning fa fa-edit"></button></a>
+                                    @endcan
+
+                                    @can('isAdmin')
                                     <button class="btn btn-sm btn-outline-danger fa fa-trash" data-toggle="modal" data-target="#invoice_del{{$i->id}}"></button>
                                     
                                     <!-- MODAL DELETE INVOICE -->
@@ -100,7 +104,38 @@
                                             </form>
 
                                             <!-- END MODAL FOR DELETE CLIENT --> 
-                                        
+                                        @elsecan('isManager')
+                                        <button class="btn btn-sm btn-outline-danger fa fa-trash" data-toggle="modal" data-target="#invoice_del{{$i->id}}"></button>
+                                    
+                                    <!-- MODAL DELETE INVOICE -->
+                                    <form class="col-md-12" action="{{ route('invoices.del',['id' => $i->invoice_id]) }}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('PUT')
+                                            
+                                            <div class="modal fade" id="invoice_del{{$i->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header bg-danger text-white">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">REMOVE Invoice??</h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                
+                                                <h3><i class="fa fa-warning" ></i> WARNING!!</h3>
+                                                <h5>You are going to remove this invoice, are you sure?</h5>
+                                                <h5>This action can <b><u>NOT BE UNDONE!</u></b></h5>
+                                                    
+                                                </div>
+                                                <div class="modal-footer card-footer">
+                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-outline-danger">DELETE</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </form>
+
+                                            <!-- END MODAL FOR DELETE CLIENT --> 
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

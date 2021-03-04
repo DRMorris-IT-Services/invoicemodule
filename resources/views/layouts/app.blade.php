@@ -75,7 +75,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <div class="dropdown-header bg-light py-2"><strong>Finance</strong></div>
         <a class="dropdown-item" href="http://clients.drmorris-itservices.de/home" target="_blank"><i class="fa fa-globe" ></i> &nbsp; Clients</a>
-          <a class="dropdown-item" href="http://quotes.drmorris-itserivces.de/home" target="_blank"><i class="fa fa-money" ></i> &nbsp; Quotes</a>
+          <a class="dropdown-item" href="http://quotes.drmorris-itservices.de/home" target="_blank"><i class="fa fa-money" ></i> &nbsp; Quotes</a>
           <div class="dropdown-divider"></div>
           <div class="dropdown-header bg-light py-2"><strong>Other Software</strong></div>
           <a class="dropdown-item" href="http://invoices.drmorris-itservices.de/home" target="_blank"><i class="fa fa-euro" ></i> &nbsp; Invoices</a>
@@ -124,15 +124,7 @@
                 <a class="dropdown-item" href="{{url('/sysusers')}} ">
                 <i class="c-icon mfe-2 fa fa-users"></i>System Users
                 </a>
-                
-                @elsecan('isManager')
-                <div class="dropdown-header bg-light py-2"><strong>Company Administration</strong></div>
-                    
-                    <a class="dropdown-item" href="{{url('/cousers')}} ">
-                    <i class="c-icon mfe-2 fa fa-users"></i>Company Users
-                    </a>
-
-                    @endcan
+                @endcan
                 
             
             

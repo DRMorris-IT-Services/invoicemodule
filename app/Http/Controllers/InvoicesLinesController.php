@@ -1,12 +1,12 @@
 <?php
 
-namespace duncanrmorris\invoicemodule\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
-use duncanrmorris\invoicemodule\App\invoices_lines;
-use duncanrmorris\invoicemodule\App\invoices;
+use App\invoices_lines;
+use App\invoices;
 use Illuminate\Http\Request;
 
 class InvoicesLinesController extends Controller

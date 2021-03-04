@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\View;
 
 use App\invoices;
 use App\invoices_lines;
-use App\invoicecontrols;
+
 use App\clients;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,20 +22,19 @@ class InvoicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(invoices $invoices, invoicecontrols $invoicecontrols)
+    public function index(invoices $invoices )
     {
         //
 
-        /* $client = clients::join('invoices','clients.client_id', '=', 'invoices.client_id')
-        ->select('clients.company','invoice_id','invoices.client_id')->get(); */
+        $client = clients::join('invoices','clients.client_id', '=', 'invoices.client_id')
+        ->select('clients.company','invoice_id','invoices.client_id')->get();
 
-        //$unique = $client->unique('company');
+        $unique = $client->unique('company');
 
        return view('invoices',[
-           'invoices' => $invoices->orderby('invoice_date','DESC')->paginate(15), 
+           'invoices' => $invoices->where('user_id', auth::user()->user_id)->orderby('invoice_date','DESC')->paginate(15), 
+           'client' => $unique,
            
-           'controls' => $invoicecontrols->where('user_id',Auth::user()->id)->get(),
-            'count' => $invoicecontrols->count(),
            ]);
         
 
@@ -54,6 +53,7 @@ class InvoicesController extends Controller
         $invoice_id = Str::random(60);
         
         invoices::create([
+            'user_id' => auth::user()->user_id,
             'invoice_id' => $invoice_id,
             'invoice_date' => $today,
             'invoice_due' => $due,
@@ -85,7 +85,7 @@ class InvoicesController extends Controller
      * @param  \App\invoices  $invoices
      * @return \Illuminate\Http\Response
      */
-    public function show(invoices $invoices, invoices_lines $invoices_lines, clients $clients, $id, invoicecontrols $invoicecontrols)
+    public function show(invoices $invoices, invoices_lines $invoices_lines, clients $clients, $id)
     {
         //
 
@@ -96,8 +96,8 @@ class InvoicesController extends Controller
             'invoice' => $invoices->where('invoice_id',$id)->get(), 
             'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(), 
             'client' => $client, 'id' => $id,
-            'controls' => $invoicecontrols->where('user_id',Auth::user()->id)->get(),
-            'count' => $invoicecontrols->count(),
+            
+            
             ]);
     }
 
@@ -120,7 +120,7 @@ class InvoicesController extends Controller
 
         
         return view('edit', ['invoice' => $invoices->where('invoice_id',$id)->get(), 'invoice_lines' => $invoices_lines->where('invoice_id',$id)->get(),
-        'total_net' => $total_net, 'total_tax' => $total_tax, 'grand_total' => $grand_total, 'clients' => $clients->orderby('company','asc')->get(), 'client' => $client]);
+        'total_net' => $total_net, 'total_tax' => $total_tax, 'grand_total' => $grand_total, 'clients' => $clients->where('user_id', auth::user()->user_id)->orderby('company','asc')->get(), 'client' => $client]);
         
 
        

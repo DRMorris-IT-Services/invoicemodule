@@ -10,33 +10,23 @@
     </div>
     @endif
 
-    @if($count == 0)
-<div class="row justify-content-end">
-<a href="{{route('invoices.controls',['id' => AUTH::user()->id])}}"><i class="fa fa-cog text-info"></i></a>
-</div>
-
-<h2>Setup Required</h2>
-  <p>Please use the 'Clog' icon to setup the users.</p>
-@endif
-@if($count >= 1)
-@foreach($controls as $c)
-
-@if($c->invoice_admin == "on")
-<div class="row justify-content-end">
-  <a href="{{route('invoices.controls',['id' => AUTH::user()->id])}}"><i class="fa fa-cog text-info"></i></a>
-  </div>
-@endif
+    
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link" id="home-tab" href="{{route('invoices')}}" role="tab" aria-controls="home" aria-selected="false">Home</a>
+            <a class="nav-link active" id="home-tab" href="{{route('invoices')}}" role="tab" aria-controls="home" aria-selected="false">Home</a>
         </li>
         
-        @if($c->invoice_edit == "on")
+       @can('isAdmin')
         <li class="nav-item">
-                <a class="nav-link" id="edit-tab" href="{{route('invoices.edit',['id' => $inv->invoice_id])}}" role="tab" aria-controls="edit" aria-selected="false">Edit Invoice</a>
+                <a class="nav-link bg-warning" id="edit-tab" href="{{route('invoices.edit',['id' => $inv->invoice_id])}}" role="tab" aria-controls="edit" aria-selected="false">Edit Invoice</a>
         </li>
-        @endif
+        @elsecan('isManager')
+        <li class="nav-item">
+                <a class="nav-link bg-warning" id="edit-tab" href="{{route('invoices.edit',['id' => $inv->invoice_id])}}" role="tab" aria-controls="edit" aria-selected="false">Edit Invoice</a>
+        </li>
+        @endcan
+       
        
     </ul>
 
@@ -157,8 +147,8 @@
     
     
 
-@endif
-@endforeach
+
+
 @endsection
 
 @push('scripts')
