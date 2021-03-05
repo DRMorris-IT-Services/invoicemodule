@@ -14,16 +14,16 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="home-tab" href="{{route('invoices')}}" role="tab" aria-controls="home" aria-selected="false"><b>Home</b></a>
+            <a class="nav-link active" id="home-tab" href="{{route('invoices')}}" role="tab" aria-controls="home" aria-selected="false"><b><i class="fa fa-list"></i> Home</b></a>
         </li>
         
        @can('isAdmin')
         <li class="nav-item">
-                <a class="nav-link bg-warning text-white" id="edit-tab" href="{{route('invoices.edit',['id' => $inv->invoice_id])}}" role="tab" aria-controls="edit" aria-selected="false"><b>Edit Invoice</b></a>
+                <a class="nav-link bg-warning text-white" id="edit-tab" href="{{route('invoices.edit',['id' => $inv->invoice_id])}}" role="tab" aria-controls="edit" aria-selected="false"><b><i class="fa fa-edit"></i> Edit Invoice</b></a>
         </li>
         @elsecan('isManager')
         <li class="nav-item">
-                <a class="nav-link bg-warning text-white" id="edit-tab" href="{{route('invoices.edit',['id' => $inv->invoice_id])}}" role="tab" aria-controls="edit" aria-selected="false"><b>Edit Invoice</b></a>
+                <a class="nav-link bg-warning text-white" id="edit-tab" href="{{route('invoices.edit',['id' => $inv->invoice_id])}}" role="tab" aria-controls="edit" aria-selected="false"><b><i class="fa fa-edit"></i> Edit Invoice</b></a>
         </li>
         @endcan
        
