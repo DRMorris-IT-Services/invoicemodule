@@ -16,11 +16,11 @@
     <!-- TOP LEVEL NAV --> 
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
 	    <li class="nav-item">
-		<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+		<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><b>Home</b></a>
 	    </li>
         
 	    <li class="nav-item">
-		<a class="nav-link" id="profile-tab" href="{{route('invoices.new')}}" role="tab" aria-selected="false">New Invoice</a>
+		<a class="nav-link bg-success text-white" id="profile-tab" href="{{route('invoices.new')}}" role="tab" aria-selected="false"><b>New Invoice</b></a>
 	    </li>
         
 	    

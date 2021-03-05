@@ -12,11 +12,11 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link" id="home-tab" href="{{route('invoices')}}" role="tab" aria-controls="home" aria-selected="false">Home</a>
+            <a class="nav-link" id="home-tab" href="{{route('invoices')}}" role="tab" aria-controls="home" aria-selected="false"><b>Home</b></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" id="add-tab" href="{{route('invoices.ln.new',['id' => $inv->invoice_id])}}" role="tab" aria-controls="add" aria-selected="false" >Add New Line</a>
+            <a class="nav-link bg-success text-white" id="add-tab" href="{{route('invoices.ln.new',['id' => $inv->invoice_id])}}" role="tab" aria-controls="add" aria-selected="false" ><b>Add New Line</b></a>
         </li>
         
     </ul>
