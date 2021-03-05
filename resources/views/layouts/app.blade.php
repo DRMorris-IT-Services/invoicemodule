@@ -164,7 +164,7 @@
                 &copy;2020 DRMorris IT Services - Powered by CoreUI
                 </div>
                 <div class="col-12">
-                <small>V2.0 - 2021</small>
+                <small>V2.1 - MAR2021</small>
                 </div>
             </div>
           </footer>
